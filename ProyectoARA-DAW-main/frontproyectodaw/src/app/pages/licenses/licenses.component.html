@@ -1,0 +1,57 @@
+<div class="bg-white p-6 w-full rounded-md shadow-md">
+    @if (isLoading) {
+    <div class="loadingData flex items-center justify-center">
+        <mat-spinner></mat-spinner>
+    </div>
+    }
+
+    <div *ngIf="!isLoading" class="w-full">
+        <h1 class="text-3xl font-bold mb-4 text-black">Administración de Licencias</h1>
+        <!-- Divider -->
+        <div class="border-b border-gray-300 mb-4"></div>
+
+        <div class="mb-6">
+            <div class="flex justify-end items-center mb-4">
+                <button mat-raised-button
+                    class="!bg-[#ad1d7d] flex py-2 !text-lg hover:!bg-[#505050] !text-white !rounded-md justify-center cursor-pointer hover:bg-[#303030]"
+                    (click)="openLicensesCreateDialog()">
+                    <mat-icon class="mr-2">post_add</mat-icon>
+                    Agregar nueva licencia
+                </button>
+
+            </div>
+
+            <div class="table-container mt-6">
+                <table datatable [dtOptions]="dtOptions" class="row-border hover custom-data-table">
+                    <thead>
+                        <tr>
+                            <th class="pb-2">ID</th>
+                            <th class="pb-2">Nombre</th>
+                            <th class="pb-2">Descripción</th>
+                            <th class="pb-2">URL</th>
+                            <th class="pb-2">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let license of listLicenses">
+                            <td>{{ license.id }}</td>
+                            <td>{{ license.nombre }}</td>
+                            <td>{{ license.descripcion }}</td>
+                            <td>{{ license.url }}</td>
+                            <td class="flex justify-center items-center gap-2">
+                                <button mat-mini-fab
+                                class="cursor-pointer !bg-[#ad1d7d] !text-white !mat-elevation-z0 !rounded-md !shadow-none hover:!border-white hover:!border-2" (click)="openLicensesEditDialog(license)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-mini-fab
+                                    class="cursor-pointer !bg-red-500 !text-white !mat-elevation-z0 !rounded-md !shadow-none hover:!border-white hover:!border-2" (click)="deleteLicense(license.id)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

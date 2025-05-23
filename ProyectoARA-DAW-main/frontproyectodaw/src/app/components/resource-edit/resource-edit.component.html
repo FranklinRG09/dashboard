@@ -1,0 +1,126 @@
+<div class="w-full bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-3xl font-bold mb-4 text-black">Editar Recurso</h1>
+    <div class="border-b border-gray-300 mb-4"></div>
+  
+    <div class="flex flex-col items-center justify-center">
+      <form
+        class="w-full max-w-md"
+        [formGroup]="resourceForm"
+        (ngSubmit)="uploadResource()"
+        enctype="multipart/form-data"
+      >
+        <!-- Título -->
+        <div class="mb-4">
+          <label for="titulo" class="block text-gray-700 text-sm font-bold mb-2">Título:</label>
+          <input
+            id="titulo"
+            type="text"
+            name="titulo"
+            formControlName="titulo"
+            required
+            class="appearance-none border rounded w-full py-4 px-3 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Título del recurso"
+          />
+        </div>
+  
+        <!-- Descripción -->
+        <div class="mb-4">
+          <label for="descripcion" class="block text-gray-700 text-sm font-bold mb-2">Descripción:</label>
+          <textarea
+            id="descripcion"
+            name="descripcion"
+            formControlName="descripcion"
+            required
+            class="shadow appearance-none border rounded w-full py-4 px-3 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Descripción del recurso"
+          ></textarea>
+        </div>
+  
+        <!-- Categoría -->
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Categoría:</label>
+          <select
+            formControlName="categoriaId"
+            class="border rounded w-full py-4 px-3 focus:outline-none focus:shadow-outline"
+            required
+          >
+            <option *ngFor="let categoria of categories" [value]="categoria.id">{{ categoria.nombre }}</option>
+          </select>
+        </div>
+  
+        <!-- Tipo -->
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Tipo:</label>
+          <select
+            formControlName="tipo"
+            class="border rounded w-full py-4 px-3 focus:outline-none focus:shadow-outline"
+            required
+            (change)="onTipoChange($event)"
+          >
+            <option value="PDF">PDF</option>
+            <option value="Video">Video</option>
+            <option value="Imagen">Imagen</option>
+            <option value="Otro">Otro</option>
+          </select>
+          {{ isVideo }}
+          {{ this.resourceForm.get('tipo')?.value }}
+        </div>
+
+        <!-- URL si es vídeo -->
+        <div *ngIf="isVideo" class="mb-4">
+          <label for="url" class="block text-gray-700 text-sm font-bold mb-2">URL del vídeo:</label>
+          <input
+            id="url"
+            type="text"
+            name="url"
+            formControlName="urlExterna"
+            class="appearance-none border rounded w-full py-4 px-3 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="URL del vídeo"
+          />
+        </div>
+  
+        <!-- Licencia -->
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Licencia:</label>
+          <select
+            formControlName="licenciaId"
+            class="border rounded w-full py-4 px-3 focus:outline-none focus:shadow-outline"
+            required
+          >
+            <option *ngFor="let licencia of licencias" [value]="licencia.id">{{ licencia.nombre }}</option>
+          </select>
+        </div>
+  
+        <!-- Archivo -->
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Archivo:</label>
+          <input
+            type="file"
+            name="archivo"
+            required
+            (change)="onFileSelected($event)"
+            class="border rounded w-full py-2 px-3 focus:outline-none focus:shadow-outline"
+          />
+        </div>
+  
+        <!-- Botones -->
+        <div class="mb-4 flex items-center justify-end gap-4">
+          <button
+            type="submit"
+            class="!bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center"
+          >
+            <mat-icon class="mr-2">upload</mat-icon> Subir Recurso
+          </button>
+  
+          <button
+            type="button"
+            (click)="closeDialog()"
+            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

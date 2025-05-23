@@ -1,0 +1,129 @@
+<div id="particles-js" class="absolute inset-0 -z-10"></div>
+
+<div class="login-banner flex justify-center items-center min-h-screen relative z-10 p-4">
+    <div class="form-container w-full max-w-md md:max-w-lg lg:max-w-xl bg-white p-6 md:p-8 rounded shadow-md">
+
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <h2 class="text-2xl font-bold text-center md:text-left">Plataforma ARA</h2>
+            <div class="flex gap-2">
+                <button mat-flat-button class="!rounded-sm !bg-[#ad1d7d] hover:!bg-[#202020] !text-white"
+                    id="btn_login" (click)="redirectToLogin()">Ingresar</button>
+                <button mat-flat-button class="!rounded-sm !bg-[#ad1d7d] hover:!bg-[#202020] !text-white"
+                    id="btn_register">Registrarse</button>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold text-[#ad1d7d]">¡BIENVENIDO!</h2>
+            <h3 class="uppercase text-lg mt-2 font-bold">Crea tu cuenta</h3>
+        </div>
+
+        <form class="space-y-4" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+
+            <!-- Nombre completo -->
+            <div class="w-full">
+                <label class="text-gray-500 text-lg">Nombre completo:</label>
+                <input type="text" placeholder="Ingresa tu nombre completo" required formControlName="fullName"
+                    class="w-full border p-2 rounded focus:outline-none transition-all duration-300" [ngClass]="{
+                '!border-red-500': registerForm.controls['fullName'].invalid && (registerForm.controls['fullName'].dirty || registerForm.controls['fullName'].touched),
+                '!border-gray-300': registerForm.controls['fullName'].valid || !registerForm.controls['fullName'].touched
+            }" [class.animate-shake]="shouldShakeFullName" (blur)="onInputBlur()" />
+            </div>
+
+            <div *ngIf="registerForm.controls['fullName'].invalid && (registerForm.controls['fullName'].dirty || registerForm.controls['fullName'].touched)"
+                class="text-red-500 text-sm mt-2 bg-red-100 p-2 rounded border border-red-500">
+                <div *ngIf="registerForm.controls['fullName'].hasError('required')" class="flex items-center gap-2">
+                    <mat-icon>error</mat-icon>
+                    El nombre completo es requerido.
+                </div>
+            </div>
+
+
+            <!-- Correo -->
+            <div class="w-full">
+                <label class="text-gray-500 text-lg">Correo:</label>
+                <input type="email" placeholder="ejemplo@ejemplo.com" required formControlName="email"
+                    class="w-full border p-2 rounded focus:outline-none transition-all duration-300" [ngClass]="{
+            '!border-red-500': registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched),
+            '!border-gray-300': registerForm.controls['email'].valid || !registerForm.controls['email'].touched
+          }" [class.animate-shake]="shouldShakeEmail" (blur)="onInputBlur()" />
+            </div>
+
+            <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)"
+                class="text-red-500 text-sm mt-2 bg-red-100 p-2 rounded border border-red-500">
+                <div *ngIf="registerForm.controls['email'].hasError('required')" class="flex items-center gap-2">
+                    <mat-icon>error</mat-icon>
+                    El correo es requerido.
+                </div>
+                <div *ngIf="registerForm.controls['email'].hasError('email')" class="flex items-center gap-2">
+                    <mat-icon>error</mat-icon>
+                    El formato del correo es inválido.
+                </div>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="w-full">
+                <label class="text-gray-500 text-lg">Contraseña:</label>
+                <input type="password" placeholder="Ingresa tu contraseña" required formControlName="password"
+                    class="w-full border p-2 rounded focus:outline-none transition-all duration-300" [ngClass]="{
+            '!border-red-500': registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched),
+            '!border-gray-300': registerForm.controls['password'].valid || !registerForm.controls['password'].touched
+          }" [class.animate-shake]="shouldShakePassword" (blur)="onInputBlur()" />
+            </div>
+
+            <div *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)"
+                class="text-red-500 text-sm mt-2 bg-red-100 p-2 rounded border border-red-500">
+                <div *ngIf="registerForm.controls['password'].hasError('required')" class="flex items-center gap-2">
+                    <mat-icon>error</mat-icon>
+                    La contraseña es requerida.
+                </div>
+            </div>
+            <div *ngIf="registerForm.controls['password'].hasError('minlength') && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)"
+                class="text-red-500 text-sm mt-2 bg-red-100 p-2 rounded border border-red-500">
+                La contraseña debe tener al menos 6 caracteres.
+            </div>
+
+            <div *ngIf="registerForm.controls['password'].hasError('pattern') && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)"
+                class="text-red-500 text-sm mt-2 bg-red-100 p-2 rounded border border-red-500">
+                La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número.
+            </div>
+
+            <!-- Confirmar contraseña -->
+            <div class="w-full">
+                <label class="text-gray-500 text-lg">Confirmar contraseña:</label>
+                <input type="password" placeholder="Confirma tu contraseña" required formControlName="confirmPassword"
+                    class="w-full border p-2 rounded focus:outline-none transition-all duration-300"
+                    [ngClass]="{
+            '!border-red-500': registerForm.controls['confirmPassword'].invalid && (registerForm.controls['confirmPassword'].dirty || registerForm.controls['confirmPassword'].touched),
+            '!border-gray-300': registerForm.controls['confirmPassword'].valid || !registerForm.controls['confirmPassword'].touched }" [class.animate-shake]="shouldShakeConfirmPassword"
+                    (blur)="onInputBlur()" />
+            </div>
+
+            <div *ngIf="registerForm.controls['confirmPassword'].invalid && (registerForm.controls['confirmPassword'].dirty || registerForm.controls['confirmPassword'].touched)"
+                class="text-red-500 text-sm mt-2 bg-red-100 p-2 rounded border border-red-500">
+                <div *ngIf="registerForm.controls['confirmPassword'].hasError('required')"
+                    class="flex items-center gap-2">
+                    <mat-icon>error</mat-icon>
+                    La confirmación de la contraseña es requerida.
+                </div>
+                <div *ngIf="registerForm.errors?.['passwordMismatch'] && (registerForm.get('confirmPassword')?.touched || registerForm.get('confirmPassword')?.dirty)"
+                    class="text-red-500 text-sm mt-2 bg-red-100 p-2 rounded border border-red-500">
+                    Las contraseñas no coinciden.
+                </div>
+            </div>
+
+            <!-- Botón submit -->
+            <button mat-raised-button color="primary"
+                class="w-full py-2 px-4 mt-4 !rounded-sm hover:!bg-[#202020] !text-white flex items-center justify-center"
+                [ngClass]="{
+                    'btn-disabled': registerForm.invalid,
+                    '!bg-[#ad1d7d]': !registerForm.invalid}"
+                    [disabled]="registerForm.invalid" type="submit">
+                <mat-spinner [diameter]="30" [mode]="mode" class="custom-spinner-white" *ngIf="loading"></mat-spinner>
+                <span *ngIf="!loading">Registrarse</span>
+            </button>
+
+        </form>
+
+    </div>
+</div>

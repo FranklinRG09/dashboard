@@ -1,0 +1,62 @@
+<div class="bg-white p-6 w-full rounded-md shadow-md">
+  <div class="max-w-3xl mx-auto p-6 bg-white rounded shadow-md">
+
+    <h2 class="!text-3xl font-bold mb-6">Preferencias del usuario</h2>
+
+    <!-- Tema -->
+    <mat-card class="!bg-[#ffffff] mb-6 p-4 !shadow-md">
+      <mat-card-title >Tema</mat-card-title>
+      <mat-card-content class="!p-2">
+        <mat-radio-group class="!p-2">
+          <mat-radio-button value="light">Claro</mat-radio-button>
+          <mat-radio-button value="dark" class="ml-4">Oscuro</mat-radio-button>
+        </mat-radio-group>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Notificaciones -->
+<mat-card class="!bg-[#ffffff] mb-6 p-4 !shadow-md">
+  <mat-card-title class="mb-2">Notificaciones</mat-card-title>
+  <mat-card-content class="!py-2">
+    <mat-slide-toggle class="!p-2 !bg-[#ffffff]">
+      Recibir notificaciones por correo electrónico
+    </mat-slide-toggle>
+  </mat-card-content>
+</mat-card>
+
+<!-- Idioma -->
+<mat-card class="!bg-[#ffffff] mb-6 p-4 !shadow-md">
+  <mat-card-title class="mb-2">Idioma Preferido</mat-card-title>
+  <mat-card-content class="!p-2">
+    <mat-form-field class="w-full !p-2 !bg-[#ffffff]">
+      <mat-label>Idioma</mat-label>
+      <mat-select>
+        <mat-option value="es">Español</mat-option>
+        <mat-option value="en">Inglés</mat-option>
+        <mat-option value="fr">Francés</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>
+
+    <!-- Privacidad -->
+    <mat-card class="!bg-[#ffffff] mb-6 p-4 !shadow-md">
+      <mat-card-title>Privacidad</mat-card-title>
+      <mat-card-content class="!p-2">
+        <mat-checkbox>
+          Permitir que otros usuarios vean mi perfil
+        </mat-checkbox>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Botón Guardar -->
+    <div class="mb-4 flex items-center justify-end">
+      <button type="submit"
+        class="!bg-[#ad1d7d] flex items-center gap-2 py-2 px-4 !text-lg hover:!bg-[#505050] shadow-md !text-white !rounded-md cursor-pointer"
+        mat-raised-button>
+        <mat-icon class="mr-2">save</mat-icon>Guardar Preferencias
+      </button>
+    </div>
+
+  </div>
+</div>

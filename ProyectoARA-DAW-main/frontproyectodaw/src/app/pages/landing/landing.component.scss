@@ -1,0 +1,32 @@
+// .landing-banner::after {
+//     content: "";
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background-color: rgba(0, 0, 0, 0.5);
+//     // background-image: url(banner_shap2.png);
+// }
+
+.landing-banner {
+    position: relative;
+    overflow: hidden;
+    height: 768px;
+    
+}
+.search-form input[type="search"] {
+    background: #fff;
+    border: 0;
+    height: 60px;
+    font-size: 18px;
+    padding-left: 25px;
+    width: 100%;
+    border-radius: 45px;
+    padding-right: 25px;
+
+}
+.search-form input[type="search"]:focus {
+    outline: none;
+    // box-shadow: 0 0 0 2px #007bff;
+}

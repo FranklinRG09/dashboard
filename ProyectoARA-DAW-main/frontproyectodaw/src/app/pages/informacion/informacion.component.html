@@ -1,0 +1,33 @@
+<div class="bg-white p-6 w-full rounded-md shadow-md">
+<mat-card class="!bg-[#ffffff] mb-6 p-6" appearance="outlined">
+  <mat-card-title class="!p-2">Información de la aplicación</mat-card-title>
+  <mat-card-content class="space-y-3 text-base">
+    <p><strong>Nombre:</strong> Nombre </p>
+    <p><strong>Versión:</strong> 1.0.0 </p>
+    <div class="flex justify-start items-center">
+        <button mat-raised-button
+                class="!bg-[#ad1d7d] flex items-center gap-2 py-2 px-2 !text-lg hover:!bg-[#505050] shadow-md !text-white !rounded-md cursor-pointer">
+                <mat-icon>report_problem</mat-icon>Notificar un problema
+        </button>
+      </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-tab-group>
+  <mat-tab label="Descripción General">
+    <div class="p-4">
+      <app-general-description></app-general-description>
+    </div>
+  </mat-tab>
+  <mat-tab label="Políticas de Privacidad">
+    <div class="p-4">
+      <app-privacy-policies></app-privacy-policies>
+    </div>
+  </mat-tab>
+  <mat-tab label="Términos y Condiciones">
+    <div class="p-4">
+      <app-terms-conditions></app-terms-conditions>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+</div>

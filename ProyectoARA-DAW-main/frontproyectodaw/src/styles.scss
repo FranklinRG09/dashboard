@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+/* Import Tailwind CSS */
+@forward "tailwindcss";
+
+@import "./app/themes/pinktheme.css";
+
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-drawer-side {
+    width: 325px !important;
+    min-width: 325px !important;
+}
+
+.mat-toolbar {
+    background-color: var(--mat-sys-primary) !important;
+}
+
+.mat-drawer-content {
+    background-color: #ebedf4 !important;
+}
+
+.custom-data-table tbody tr:hover {
+    background-color: #ad1d7d !important;
+    cursor: pointer;
+    outline: 1px solid #ddd;
+    color: white;
+    transition: all 0.3s;
+}
+
+.custom-data-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+div.dt-container .dt-paging nav .dt-paging-button.current {
+    background-color: #ad1d7d !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+
+div.dt-container .dt-paging nav .dt-paging-button.current:hover {
+    background-color: #505050 !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+
+.custom-border-radius-dialog .mat-mdc-dialog-surface {
+    border-radius: 10px !important;
+}
+
+.custom-spinner-white circle {
+    stroke: white !important;
+}
+
+.custom-spinner-primary circle {
+    stroke: #ad1d7d !important;
+}
+.mat-mdc-menu-panel .mat-mdc-menu-content {
+    padding: 0 !important;
+}

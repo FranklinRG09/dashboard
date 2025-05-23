@@ -1,0 +1,47 @@
+<div class="w-full bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-3xl font-bold mb-4 text-black">Crear nueva Etiqueta</h1>
+    <div class="border-b border-gray-300 mb-4"></div>
+    <div class="flex flex-col items-center justify-center">
+        <form class="w-full max-w-md" [formGroup]="tagForm" (ngSubmit)="createNewTag()">
+
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre:</label>
+                <input type="text" id="name" name="name" required
+                    class="appearance-none border rounded w-full py-4 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Nombre de la tag" formControlName="name" />
+            </div>
+
+            <div class="mb-4">
+                <label for="color" class="block text-gray-700 text-sm font-bold mb-2">Color:</label>
+                <input type="color" id="color" name="color" required
+                    class="appearance-none border rounded w-full py-6 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Color de la tag" formControlName="color" />
+            </div>
+
+            <div class="mb-4">
+                <label for="icon" class="block text-gray-700 text-sm font-bold mb-2">Categoría:</label>
+                <select required
+                    class="appearance-none border rounded w-full py-4 px-3 leading-tight focus:outline-none focus:shadow-outline" formControlName="categoryId">
+                    @for (category of listCategories; track category) {
+                    <option value="{{ category.id }}">{{ category.nombre }}</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Descripción:</label>
+                <textarea id="description" name="description" required
+                    class="shadow appearance-none border rounded w-full py-4 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Descripción de la tag" formControlName="description"></textarea>
+            </div>
+            <div class="mb-4 flex items-center justify-end gap-4">
+                <button type="submit"
+                    class="!bg-[#ad1d7d] flex py-2 !text-lg hover:!bg-[#505050] !text-white !rounded-md justify-center cursor-pointer hover:bg-[#303030]"
+                    mat-raised-button>
+                    <mat-icon class="mr-2">save</mat-icon>Crear Tag
+                </button>
+                <button type="button" (click)="closeTagCreateDialog()"
+                    class="bg-red-400 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>

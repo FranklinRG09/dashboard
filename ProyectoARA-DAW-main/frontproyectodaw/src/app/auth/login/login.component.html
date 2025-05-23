@@ -1,0 +1,95 @@
+<div id="particles-js" class="absolute inset-0 -z-10"></div>
+
+<div class="login-banner flex justify-center items-center min-h-screen relative z-10 p-4">
+  <div class="form-container w-full max-w-md md:max-w-lg lg:max-w-xl bg-white p-6 md:p-8 rounded shadow-md">
+
+    <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+      <h2 class="text-2xl font-bold text-center md:text-left">Plataforma ARA</h2>
+      <div class="flex gap-2">
+        <button mat-flat-button class="!rounded-sm !bg-[#ad1d7d] hover:!bg-[#202020] !text-white"
+          id="btn_login">Ingresar</button>
+        <button mat-flat-button class="!rounded-sm !bg-[#ad1d7d] hover:!bg-[#202020] !text-white"
+          id="btn_register" (click)="redirecToRegister()">Registrarse</button>
+      </div>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-[#ad1d7d]">¡BIENVENIDO!</h2>
+      <h3 class="uppercase text-lg mt-2 font-bold">Ingresa a tu cuenta</h3>
+    </div>
+
+    <!-- Errores de login -->
+    <div *ngIf="loginFailed.loginError" class="text-red-500 text-sm mb-4 bg-red-100 p-2 rounded border border-red-500">
+      <div class="flex items-center gap-2">
+        <mat-icon>error</mat-icon>
+        {{ loginFailed.loginFailedMessage }}
+      </div>
+    </div>
+
+    <form class="space-y-4" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+
+      <!-- Correo -->
+      <div class="w-full">
+        <label class="text-gray-500 text-lg">Correo:</label>
+        <input type="email" placeholder="ejemplo@ejemplo.com" required formControlName="email"
+          class="w-full border p-2 rounded focus:outline-none transition-all duration-300" [ngClass]="{
+            '!border-red-500': loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched),
+            '!border-gray-300': loginForm.controls['email'].valid || !loginForm.controls['email'].touched
+          }" [class.animate-shake]="shouldShakeEmail" (blur)="onInputBlur()" />
+      </div>
+
+      <div
+        *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"
+        class="text-red-500 text-sm mt-2 bg-red-100 p-2 rounded border border-red-500">
+        <div *ngIf="loginForm.controls['email'].hasError('required')" class="flex items-center gap-2">
+          <mat-icon>error</mat-icon>
+          El correo es requerido.
+        </div>
+        <div *ngIf="loginForm.controls['email'].hasError('email')" class="flex items-center gap-2">
+          <mat-icon>error</mat-icon>
+          El formato del correo es inválido.
+        </div>
+      </div>
+
+      <!-- Contraseña -->
+      <div class="w-full">
+        <label class="text-gray-500 text-lg">Contraseña:</label>
+        <input type="password" placeholder="Ingresa tu contraseña" required formControlName="password"
+          class="w-full border p-2 rounded focus:outline-none transition-all duration-300" [ngClass]="{
+            '!border-red-500': loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched),
+            '!border-gray-300': loginForm.controls['password'].valid || !loginForm.controls['password'].touched
+          }" [class.animate-shake]="shouldShakePassword" (blur)="onInputBlur()" />
+      </div>
+
+      <div
+        *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
+        class="text-red-500 text-sm mt-2 bg-red-100 p-2 rounded border border-red-500">
+        <div *ngIf="loginForm.controls['password'].hasError('required')" class="flex items-center gap-2">
+          <mat-icon>error</mat-icon>
+          La contraseña es requerida.
+        </div>
+      </div>
+
+      <!-- Recordar contraseña y link olvidar -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-2 mb-6">
+        <label for="remember-me" class="text-gray-500 flex items-center gap-2">
+          <input type="checkbox" id="remember-me" class="mr-1" />
+          Recordar mi contraseña
+        </label>
+        <a href="#" class="text-gray-500 hover:text-gray-900 text-sm">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <!-- Botón submit -->
+      <button mat-raised-button color="primary"
+        class="w-full py-2 px-4 !rounded-sm hover:!bg-[#202020] !text-white flex items-center justify-center"
+        [ngClass]="{
+          'btn-disabled': loginForm.invalid,
+          '!bg-[#ad1d7d]' : !loginForm.invalid}" [disabled]="loginForm.invalid" type="submit">
+        <mat-spinner [diameter]="30" [mode]="mode" class="custom-spinner-white" *ngIf="loading"></mat-spinner>
+        <span *ngIf="!loading">Iniciar sesión</span>
+      </button>
+
+    </form>
+
+  </div>
+</div>
